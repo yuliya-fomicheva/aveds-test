@@ -1,95 +1,100 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client"
+import styles from "./styles/main.module.css";
 
-export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+import Link from "next/link";
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+import Layout from "./components/layout";
+
+import LoginForm from "./components/loginForm/loginForm";
+import useModal from "./hooks/useModal";
+import Modal from "./components/UI/modal/modal";
+import AppButton from "./components/UI/button/appButton";
+import LoginButton from "./components/UI/button/loginButton";
+
+
+
+const Page = () => {
+
+    const { isOpen, toggle } = useModal();
+
+    return (
+        <Layout>
+            <div className="main__wrapper">
+            
+                <h1 className="main__title">Место для&nbsp;получения<br/>медицинской помощи</h1>
+                <div className={styles.main__buttonWrapper}>
+                <LoginButton inverted toggle={toggle}/>
+                    <Link href="/contacts">
+                        <AppButton>Контакты</AppButton>
+                    </Link>
+                    
+                </div>
+
+                <ul className={styles.options}>
+                    <li className={styles.options__item}>
+                        <div className={styles.options__icon}>
+
+                            <svg width="32" height="30" viewBox="0 0 32 30" fill="000" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.9909 3.21824C9.0159 -2.88242 0.14726 2.4778 0.00183389 9.74443C-0.0352258 11.5964 0.499358 13.4003 1.56346 15.0633H8.46069L9.68747 13.0186C10.0437 12.425 10.9058 12.4059 11.2822 12.9977L13.8705 17.0651L17.6436 9.09998C17.9726 8.40497 18.9532 8.38291 19.3161 9.05686L22.5504 15.0633H30.4184C36.2468 5.95403 24.7279 -4.42336 15.9909 3.21824Z" fill="white"/>
+                            <path d="M21.1651 16.4452L18.5443 11.578L14.8383 19.4018C14.523 20.0674 13.5956 20.1252 13.2002 19.5037L10.5148 15.2839L9.79528 16.483C9.62585 16.7654 9.32075 16.9381 8.99146 16.9381H3.04642C3.23278 17.1332 2.23954 16.1419 15.3297 29.1643C15.6953 29.5281 16.2863 29.5282 16.652 29.1643C29.5408 16.3423 28.7493 17.1328 28.9353 16.9381H21.9905C21.6456 16.9382 21.3286 16.7488 21.1651 16.4452Z" fill="white"/>
+                            </svg>
+
+                        </div>
+                        <h3 className={styles.options__title}>Онлайн-прием</h3>
+                        <p className={styles.options__text}>Рыба текст</p>
+                    </li>
+
+                    <li className={styles.options__item}>
+                        <div className={styles.options__icon}>        
+                            
+                           
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_3_223)">
+                            <path d="M10.25 20.5884V23.5C10.25 28.1527 14.0348 32 18.6875 32C23.3402 32 27.125 28.1527 27.125 23.5V22.4676C29.262 22.0321 30.875 20.1385 30.875 17.875C30.875 15.2904 28.7721 13.1875 26.1875 13.1875C23.603 13.1875 21.5 15.2904 21.5 17.875C21.5 20.1385 23.1131 22.0321 25.25 22.4676V23.5C25.25 27.1182 22.3057 30.125 18.6875 30.125C15.0693 30.125 12.125 27.1182 12.125 23.5V20.5896C15.9511 19.8877 20.3667 15.1368 21.1311 10.6176C21.6323 7.64925 20.3938 5.273 17.75 4.08444V2.8125C17.75 1.26163 16.4884 0 14.9375 0C13.3866 0 12.125 1.26163 12.125 2.8125C12.125 4.36337 13.3866 5.625 14.9375 5.625H16.602C18.7591 6.42369 19.6658 8.03569 19.2817 10.3054C18.6234 14.201 14.2362 18.8125 11.1875 18.8125C7.77295 18.8125 3.02708 13.3901 2.99833 9.375C2.98551 7.58531 3.9232 6.30206 5.74789 5.625H7.43751C8.98839 5.625 10.25 4.36337 10.25 2.8125C10.25 1.26163 8.98845 0 7.43751 0C5.88658 0 4.62501 1.26163 4.62501 2.8125V4.074C2.36983 5.08387 1.12014 6.97625 1.12501 9.375C1.13458 14.0759 6.00508 19.802 10.25 20.5884ZM25.25 16.9375H27.125V18.8125H25.25V16.9375Z" fill="white"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_3_223">
+                            <rect width="32" height="32" fill="white"/>
+                            </clipPath>
+                            </defs>
+                            </svg>
+
+                        </div>
+                        <h3 className={styles.options__title}>Экстренный Случай</h3>
+                        <p className={styles.options__text}>Рыба текст</p>
+                    </li>
+
+                    <li className={styles.options__item}>
+                        <div className={styles.options__icon}>
+                             
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_3_233)">
+                            <g clip-path="url(#clip1_3_233)">
+                            <path d="M6.34836 32H25.6516C26.8003 32 27.7565 31.1215 27.7565 30.0418V6.62852C27.7565 5.54863 26.8003 4.66086 25.6516 4.66086H22.4696V6.44863C22.4742 6.75896 22.2293 7.01575 21.9193 7.02608H10.0429C9.72662 7.01847 9.47119 6.76493 9.46086 6.44863V4.66086H6.34836C5.19972 4.66086 4.24347 5.54863 4.24347 6.62852V30.0418C4.24347 31.1215 5.19972 32 6.34836 32ZM10.6435 14.0522C10.6435 13.7448 10.8927 13.4956 11.2 13.4956H14.0522V10.6435C14.0522 10.3361 14.3013 10.0869 14.6087 10.0869H17.3913C17.6986 10.0869 17.9478 10.3361 17.9478 10.6435V13.4956H20.8C21.1073 13.4956 21.3565 13.7448 21.3565 14.0522V16.8348C21.3565 17.1421 21.1073 17.3913 20.8 17.3913H17.9478V20.2435C17.9478 20.5508 17.6986 20.8 17.3913 20.8H14.6087C14.3013 20.8 14.0522 20.5508 14.0522 20.2435V17.3913H11.2C10.8927 17.3913 10.6435 17.1421 10.6435 16.8348V14.0522ZM10.8701 23.6522H21.1299C21.4375 23.6522 21.6864 23.9013 21.6864 24.2087C21.6864 24.516 21.4375 24.7652 21.1299 24.7652H10.8701C10.5625 24.7652 10.3136 24.516 10.3136 24.2087C10.3136 23.9013 10.5625 23.6522 10.8701 23.6522ZM8.78314 26.4348H23.2168C23.5244 26.4348 23.7734 26.684 23.7734 26.9913C23.7734 27.2986 23.5244 27.5478 23.2168 27.5478H8.78314C8.47553 27.5478 8.22662 27.2986 8.22662 26.9913C8.22662 26.684 8.47553 26.4348 8.78314 26.4348Z" fill="white"/>
+                            <path d="M21.3565 2.15652H18.7522C18.4902 2.15625 18.2636 1.97337 18.2084 1.71712C17.9932 0.722556 17.0486 1.23676e-06 15.9622 1.23676e-06H15.9554C14.8981 -0.00108572 13.9745 0.714403 13.7114 1.73832C13.6481 1.98424 13.4264 2.15625 13.1723 2.15652H10.5739V5.91304H21.3565V2.15652Z" fill="white"/>
+                            <path d="M15.1652 16.8348V19.687H16.8348V16.8348C16.8348 16.5275 17.084 16.2783 17.3913 16.2783H20.2435V14.6087H17.3913C17.084 14.6087 16.8348 14.3595 16.8348 14.0522V11.2H15.1652V14.0522C15.1652 14.3595 14.916 14.6087 14.6087 14.6087H11.7565V16.2783H14.6087C14.916 16.2783 15.1652 16.5275 15.1652 16.8348Z" fill="white"/>
+                            </g>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_3_233">
+                            <rect width="32" height="32" fill="white"/>
+                            </clipPath>
+                            <clipPath id="clip1_3_233">
+                            <rect width="32" height="32" fill="white"/>
+                            </clipPath>
+                            </defs>
+                            </svg>
+                        </div>
+                        <h3 className={styles.options__title}>Лечение рака</h3>
+                        <p className={styles.options__text}>Рыба текст</p>
+                    </li>
+                 
+                </ul>
+                <Modal isOpen={isOpen} toggle={toggle}><LoginForm/></Modal>
+            </div>
+        </Layout>
+
+    )
 }
+
+export default Page;

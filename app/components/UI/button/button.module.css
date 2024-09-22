@@ -1,0 +1,51 @@
+
+.button {
+    display: inline-block;
+    border: 2px solid #FF685B;
+    border-radius: 7px;
+    color: #FF685B;
+    background-color: #fff;
+    padding: 15px 40px;
+
+    font-size: 20px;
+    font-family: var(--font-montserrat);
+    font-weight: 500; 
+    word-wrap: break-word;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 22px; 
+    letter-spacing: 0.2px;
+
+    cursor: pointer;
+
+}
+
+
+.button:hover{
+    border: 2px  solid #E74040;
+     background-color: #E74040;
+     color: #fff;
+ }
+ 
+ 
+
+.button_long {
+    padding: 6px 20px;
+
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.button_inverted {
+    color: #fff;
+    background-color: #FF685B;
+}
+
+
+@media (min-width: 1440px) {
+    .button_long {
+        padding: 8px 60px;
+
+    }
+}
