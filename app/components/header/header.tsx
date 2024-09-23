@@ -32,6 +32,7 @@ const Header = () => {
                         </Link>
                     </li>
                 </ul>
+                <LoginButton toggle={toggle} long></LoginButton>
             </nav>
         </div>
         <Modal isOpen={isOpen} toggle={toggle}><LoginForm/></Modal>
