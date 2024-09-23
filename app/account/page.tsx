@@ -24,19 +24,23 @@ const { isOpen, toggle } = useModal();
   }, [])
 
   return (
-        <Layout>
+    (localStorage.getItem('user')!== null) ? <Layout>
             <div className="main__wrapper">
                 <h1 className="main__title">Привет, {user.name}</h1>
                 <div className={styles.main__buttonWrapper}>
                     <LoginButton toggle={toggle} exitText="Выйти из аккаунта" inverted></LoginButton>
-                    {/* <button  type='button' className="button button_long">Выйти из аккаунта</button> */}
                     <Link href="/contacts">
                         <AppButton type='button'>Перейти в контакты</AppButton>
                     </Link>
 
                 </div>
             </div>
-        </Layout>
+        </Layout> : 
+        
+            <div className="main__wrapper">
+                <h1 className="main__title">404 - Page Not Found</h1> 
+            </div>
+       
     ) } 
   
 export default Account;

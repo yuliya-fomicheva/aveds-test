@@ -13,6 +13,11 @@ interface ILoginButton {
 
 const LoginButton = (props:ILoginButton) => {
 
+
+    const [isAuth, setAuth] = useState(localStorage.getItem('user') != null)
+
+    const router = useRouter();
+
     const rootClasses = [styles.button]
     if (props.inverted) {
         rootClasses.push(styles.button_inverted)
@@ -21,9 +26,6 @@ const LoginButton = (props:ILoginButton) => {
         rootClasses.push(styles.button_long)
     }
        
-    const [isAuth, setAuth] = useState(localStorage.getItem('user') != null)
-
-    const router = useRouter();
 
     const exit = () => {
             localStorage.removeItem('user');
